@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,800;1,200&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+// bg: #F7F9FC
+// bg2: #E9EEF6
+
+
+body{
+    background: rgb(220, 245, 253);
+}
+
+$phone : 768px;
+
+.header{
+    // background: rgba(211, 211, 211, 0.493);
+    width: 80%;
+    height: 70px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 30px;
+    flex-wrap: wrap;
+
+    .logo{
+        font-size: 16px;
+    }
+
+    .header-card{
+        border: 1px solid grey;
+        border-radius: 10px;
+        position: relative;
+        // height: 70px;
+        display: flex;
+        align-items: center;
+
+        .card-label{
+            font-size: 12px;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background-color: rgb(233, 233, 233);
+            padding: 0px 5px;
+            
+            @media (max-width: $phone){
+                // height: 50px;
+                padding: 0px 5px;
+                left: 3px;
+                font-size: 12px;
+            }
+        }
+
+        .bucket-code{
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 6px;
+            padding: 10px 15px 3px;
+            
+            @media (max-width: $phone){
+                padding: 10px 10px 5px;
+                font-size: 24px;
+            }
+
+            // @media(max-width: $phone){
+            //     font-size: 30px;
+            // }
+        }
+
+        .exit{
+            height: 56px;
+            padding: 0px 10px;
+            background: lightcoral;
+            font-size: 30px;
+            aspect-ratio: 1;
+            border: none;
+            outline: none;
+            border-radius: 0 7px 7px 0;
+
+            @media (max-width: $phone){
+                height: 48px;
+            }
+        }
+    }
+
+    @media (max-width: $phone){
+        width: 100%;
+    }
+
+}
+
+.container{
+    // border: 1px solid grey;
+    height: calc(100vh - 70px);
+    width: 80%;
+    margin: auto;
+    // text-align: center;
+    padding: 30px;
+    gap: 10px;
+    display: flex;
+    // grid-template-columns: 1fr 1fr;
+    // grid-template-rows: 60px auto;
+    // grid-template-areas: 
+    //         'switch switch'
+    //         'files clipboard';
+
+    .main{
+        display: flex;
+        gap: 16px;
+        height: 100%;
+        width: 100%;
+
+        @media (max-width: $phone){
+            display: flex;
+            flex-direction: column;
+        }
+        
+        p{
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+    }
+    .main > *{
+        border-radius: 16px;
+        // background: rgb(220, 245, 253);
+    }
+
+    .switch{
+        height: 60px;
+        grid-area: switch;
+        display: none;
+        padding: 8px;
+        border-radius: 12px;
+
+        @media (max-width: $phone){
+            display: flex;
+        }
+        
+        .file-switch, .cb-switch{
+            width: 100%;
+            padding: 8px;
+            background: white;
+            text-align: center;
+            font-weight: 500;
+            border: 1px solid #007bff;
+        }
+
+        .file-switch{
+            border-radius: 8px 0 0 8px;
+        }
+        .cb-switch{
+            border-radius:  0 8px 8px 0;
+        }
+
+        .active{
+            background: #007bff;
+            color: white;
+        }
+    }
+
+    .files{
+        position: relative;
+        grid-area: files;
+        padding: 16px;
+        height: 100%;
+        min-width: 50%;
+        // background: rgb(220, 245, 253);
+        background: rgb(247, 253, 255);
+
+        .files-list{
+            height: calc(100% - 166px);
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                width: 4px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: rgb(117, 163, 182);
+                border-radius: 2px;
+              }
+
+            .file-item{
+                // padding: 10px;
+                position: relative;
+                margin-top: 5px;
+                width: 100%;
+                border-radius: 8px;
+                border: 1px solid lightgrey;
+                display: flex;
+                gap: 4px;
+                align-items: center;
+                height: 54px;
+                overflow: hidden;
+                i{
+                    font-size: 20px;
+                    margin: auto 14px;
+                }
+
+                .name{
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                .size{
+                    font-size: 12px;
+                    color: rgb(85, 85, 85);
+                }
+
+                .download, .delete{
+                    width: 54px;
+                    // background-color: rgb(132, 224, 255);
+                    background-color: rgb(175, 235, 255);
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: .15s;
+
+                    &:hover{
+                        background-color: rgb(0, 157, 209);
+                        background-color: rgb(111, 205, 236);
+                        // color: rgb(220, 245, 253);
+                    }
+                }
+
+                .file-btns{
+                    position: absolute;
+                    background: rgb(220, 245, 253);
+                    right: 0;
+                    display: flex;
+                    height: 100%;
+                    gap: 4px;
+                }
+
+            }
+        }
+
+        @media (max-width: $phone){
+            width: 100%;
+        }
+
+    }
+
+    .clipboard{
+        grid-area: clipboard;
+        width: 100%;
+        background: rgb(255, 238, 217)  ;
+        background: rgb(247, 253, 255);
+        // display: none;
+    }
+
+
+    @media (max-width: $phone){
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+.file-uploader {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 32px);
+  bottom: 16px;
+  height: 120px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  transition: border-color 0.3s ease-in-out;
+  cursor: pointer;
+
+  &.highlight {
+    border-color: #007bff;
+  }
+
+  .upload-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+
+    i {
+      font-size: 60px;
+      opacity: .5;
+    }
+
+    p {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: none;
+    }
+
+    .browse-button {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      background-color: transparent;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #00000010;
+      }
+    }
+  }
+
+  .file-input {
+    display: none;
+  }
+}
+
+.clipboard{
+
+    padding: 16px;
+
+    .text-field{
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+        border-radius: 8px;
+        background: white;
+    }
+
+    .buttons{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: right;
+        gap: 10px;
+
+        i{
+            margin-right: 5px;
+        }
+
+        .refresh, .clear{
+            font-size: 16px;
+            border-radius: 8px;
+            padding: 4px 8px;
+
+            &:hover{
+                background: #0000002c;
+                background: rgb(255, 205, 143);
+                cursor: pointer;
+            }
+        }
+    }
+}
