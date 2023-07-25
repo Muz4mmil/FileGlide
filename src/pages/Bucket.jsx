@@ -4,15 +4,12 @@ import Header from "../components/Header";
 import Container from "../components/Container";
 
 
-const Bucket = ()=>{
-
-    let bucketCode = 'test'
-
+const Bucket = ({ bucketCode, setBucketCode }) => {
 
     return (
         <>
-            <Header bucketCode={bucketCode}/>
-            <Container bucketCode={bucketCode}/>
+            <Header bucketCode={bucketCode} setBucketCode={setBucketCode} />
+            <Container bucketCode={bucketCode} />
         </>
     )
 }

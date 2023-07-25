@@ -13,7 +13,7 @@
 
 
 body{
-    // background: rgb(220, 245, 253);
+    background: rgb(220, 245, 253);
 }
 
 $phone : 768px;
@@ -28,7 +28,7 @@ $phone : 768px;
 }
 
 .bucket-box{
-    background: #d8f3ff;
+    background: #fff;
     padding: 16px;
     border-radius: 16px;
     display: flex;
@@ -62,12 +62,11 @@ $phone : 768px;
         padding: 6px;
         border-radius: 10px;
         border: none;
-        background-color: rgb(134, 222, 252);
+        background-color: rgb(175, 235, 255);
         cursor: pointer;
 
         &:hover{
-            background-color: rgb(0, 145, 194);
-            color: white;
+            background-color: rgb(111, 205, 236);
         }
     }
 
@@ -89,14 +88,12 @@ $phone : 768px;
     }
 
     .header-card{
-        // border: 1px solid grey;
-       
+        border: 1px solid grey;
         border-radius: 10px;
         position: relative;
         // height: 70px;
         display: flex;
         align-items: center;
-        box-shadow: 0 2px 5px lightgray ;
 
         .card-label{
             font-size: 12px;
@@ -120,7 +117,6 @@ $phone : 768px;
             letter-spacing: 6px;
             padding: 10px 15px 3px;
             
-            
             @media (max-width: $phone){
                 padding: 10px 10px 5px;
                 font-size: 24px;
@@ -134,19 +130,12 @@ $phone : 768px;
         .exit{
             height: 56px;
             padding: 0px 10px;
-            
-            background: linear-gradient(#ff9174, #ff7674);
+            background: lightcoral;
             font-size: 30px;
             aspect-ratio: 1;
             border: none;
             outline: none;
             border-radius: 0 7px 7px 0;
-            cursor: pointer;
-
-            &:hover{
-                background: linear-gradient(#fa5956, #fa5956);
-                color: white;
-            }
 
             @media (max-width: $phone){
                 height: 48px;
@@ -236,10 +225,8 @@ $phone : 768px;
         padding: 16px;
         height: 100%;
         min-width: 50%;
-        color: #122941;
         // background: rgb(220, 245, 253);
-        // background: rgb(247, 253, 255);
-        background: #e6faff;
+        background: rgb(247, 253, 255);
 
         .files-list{
             height: calc(100% - 166px);
@@ -258,9 +245,7 @@ $phone : 768px;
                 margin-top: 5px;
                 width: 100%;
                 border-radius: 8px;
-                background: #FFF;
-                box-shadow: 0 2px 4px rgb(179, 201, 209);
-                // border: 1px solid lightgrey;
+                border: 1px solid lightgrey;
                 display: flex;
                 gap: 4px;
                 align-items: center;
@@ -283,19 +268,16 @@ $phone : 768px;
                 .download, .delete{
                     width: 54px;
                     // background-color: rgb(132, 224, 255);
-                    // background-color: rgb(175, 235, 255);
-                    background: linear-gradient(#4fccd5, #10aabe) ;
+                    background-color: rgb(175, 235, 255);
                     height: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    transition: .1s;
-                    cursor: pointer;
-                    
+                    transition: .15s;
+
                     &:hover{
-                        background: linear-gradient(#1094a5, #1094a5) ;
-                        color: white;
-                        text-shadow: 0px 0px 25px black;
+                        background-color: rgb(0, 157, 209);
+                        background-color: rgb(111, 205, 236);
                         // color: rgb(220, 245, 253);
                     }
                 }
@@ -320,7 +302,8 @@ $phone : 768px;
     .clipboard{
         grid-area: clipboard;
         width: 100%;
-        background: rgb(255, 245, 224);
+        background: rgb(255, 238, 217)  ;
+        background: rgb(247, 253, 255);
         // display: none;
     }
 
