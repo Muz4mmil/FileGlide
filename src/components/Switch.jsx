@@ -11,6 +11,7 @@ function Switch({onSwitchClick, active}) {
         onClick={()=> onSwitchClick('clipboard')}>
           ClipBoard
       </div>
+      <div className="slider"></div>
     </div>
   )
 }
