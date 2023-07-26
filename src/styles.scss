@@ -198,11 +198,15 @@ $phone : 768px;
     }
 
     .switch{
-        height: 60px;
+        height: 44px;
+        width: 300px;
+        margin: auto;
         grid-area: switch;
         display: none;
-        padding: 8px;
-        border-radius: 12px;
+        align-items: center;
+        border-radius: 22px;
+        box-shadow: 0 2px 10px lightgrey;
+        padding: 4px;
 
         @media (max-width: $phone){
             display: flex;
@@ -210,23 +214,22 @@ $phone : 768px;
         
         .file-switch, .cb-switch{
             width: 100%;
-            padding: 8px;
+            padding: 4px;
             background: white;
             text-align: center;
             font-weight: 500;
-            border: 1px solid #007bff;
+            border-radius: 22px;
+            cursor: pointer;
+            // border: 1px solid #007bff;
         }
 
-        .file-switch{
-            border-radius: 8px 0 0 8px;
+        .file-switch.active{
+            background: #b3f0ff;
+            color: #0e657a;
         }
-        .cb-switch{
-            border-radius:  0 8px 8px 0;
-        }
-
-        .active{
-            background: #007bff;
-            color: white;
+        .cb-switch.active{
+            background: #ffedc7;
+            color: #a57713;
         }
     }
 
@@ -320,7 +323,7 @@ $phone : 768px;
     .clipboard{
         grid-area: clipboard;
         width: 100%;
-        background: rgb(255, 245, 224);
+        background: #fff5e0;
         // display: none;
     }
 
