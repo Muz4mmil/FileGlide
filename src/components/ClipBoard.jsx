@@ -2,7 +2,7 @@ import React from 'react'
 
 function ClipBoard() {
   return (
-    <div className='clipboard animate__animated animate__bounceInRight animate__faster'>
+    <div className='clipboard animate__animated animate__slideInRight animate__faster'>
       <p>Clip-Board</p>
       <textarea name="text-field" className='text-field' rows="10"></textarea>
       <div className="buttons">
