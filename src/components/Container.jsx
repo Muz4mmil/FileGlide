@@ -27,7 +27,7 @@ function Container({bucketCode}) {
   }
 
   return (
-    <div className="container">
+    <div className="container animate__animated animate__fadeIn animate__delay-0.5s">
       {isMobile ? (
         <>
         <Switch onSwitchClick={handleSwitch} active={active}/>

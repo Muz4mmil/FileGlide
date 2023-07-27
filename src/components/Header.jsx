@@ -3,7 +3,7 @@ import HeaderCard from "../components/HeaderCard";
 
 function Header({ bucketCode, setBucketCode }) {
   return (
-    <div className="header">
+    <div className="header animate__animated animate__fadeIn">
       <div className="logo">
         <h1>FileGlide</h1>
       </div>

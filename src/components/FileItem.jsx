@@ -15,7 +15,7 @@ function FileItem({name, size, url}) {
   }
 
   return (
-    <div className="file-item">
+    <div className="file-item animate__animated animate__fadeInUp animate__faster">
           <i class="fa-solid fa-file"></i>
           <div className="file-details">
             <div className="name">{name}</div>
