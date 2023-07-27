@@ -168,6 +168,7 @@ $phone : 768px;
     padding: 30px;
     gap: 10px;
     display: flex;
+    overflow: hidden;
     // grid-template-columns: 1fr 1fr;
     // grid-template-rows: 60px auto;
     // grid-template-areas: 
@@ -213,10 +214,11 @@ $phone : 768px;
         .file-switch, .cb-switch{
             width: 100%;
             text-align: center;
-            font-weight: 500;
+            font-weight: 600;
             border-radius: 22px;
+            color: rgba(0, 0, 0, 0.7);
             cursor: pointer;
-            -webkit-tap-highlight-color: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .slider{

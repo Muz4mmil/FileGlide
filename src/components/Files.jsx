@@ -75,7 +75,7 @@ function Files({bucketCode}) {
   }, [])
 
   return (
-    <div className="files">
+    <div className="files animate__animated animate__bounceInLeft animate__faster">
       <p>Files</p>
       <div className="files-list">
         {
