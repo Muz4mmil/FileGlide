@@ -11,12 +11,12 @@
 // bg: #F7F9FC
 // bg2: #E9EEF6
 
-
-body{
-    // background: rgb(220, 245, 253);
-}
-
 $phone : 768px;
+
+// body{
+//     background: url('./bg.png');
+//     background-size: cover;
+// }
 
 #root{
     height: 100vh;
@@ -84,15 +84,29 @@ $phone : 768px;
     padding: 12px 30px;
     flex-wrap: wrap;
 
-    .logo h1{
-        font-family: 'Righteous', sans-serif;
-        font-weight: 300;
-        font-size: 34px;
+    .logo{
+        display: flex;
+        gap: 10px;
+        h1{
+            font-family: 'Righteous', sans-serif;
+            font-weight: 300;
+            font-size: 34px;
+        }
         cursor:default;
         // background: linear-gradient(to right, #ff9174, #ff7674);
         // text-shadow: 0 0 2px rgba(255, 0, 0, 0.123);
         // -webkit-background-clip: text;
         // -webkit-text-fill-color: transparent;
+
+        span{
+            border: 1px solid rgb(0, 152, 202);
+            border-radius: 4px;
+            padding: 0px 4px;
+            font-size: 10px;
+            font-weight: 600;
+            color: rgb(0, 152, 202);
+            height: max-content;
+        }
     }
 
     .header-card{
@@ -272,6 +286,8 @@ $phone : 768px;
         // background: rgb(220, 245, 253);
         // background: rgb(247, 253, 255);
         background: #e6faff;
+        // background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 2px 5px lightgrey;
 
         .files-list{
             height: calc(100% - 166px);
@@ -334,7 +350,7 @@ $phone : 768px;
                     &:hover{
                         background: linear-gradient(#1094a5, #1094a5) ;
                         color: white;
-                        text-shadow: 0px 0px 25px black;
+                        // text-shadow: 0px 0px 25px black;
                     }
                 }
 
@@ -359,6 +375,8 @@ $phone : 768px;
         grid-area: clipboard;
         width: 100%;
         background: #fff5e0;
+        // background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 2px 5px lightgrey;
         // display: none;
     }
 
