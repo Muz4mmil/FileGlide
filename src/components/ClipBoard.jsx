@@ -2,7 +2,7 @@ import React, { useState, useEffect }  from 'react'
 import { collection, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 import {db, storage} from '../firbase-config'
 
-function ClipBoard() {
+function ClipBoard({bucketCode}) {
 
   const [sharedText, setSharedText] = useState('');
 
@@ -13,14 +13,14 @@ function ClipBoard() {
 
   // Function to save the shared text to Firestore
   const saveSharedText = async () => {
-    const clipboardDocRef = doc(db, 'clipboard', 'shared_text');
-    await setDoc(clipboardDocRef, { text: sharedText });
+    const clipboardDocRef = doc(db, 'clipboard', bucketCode);
+    await setDoc(clipboardDocRef, { text: sharedText});
     console.log('text-sent');
   };
 
   useEffect(() => {
     // Set up Firestore listener to get shared text updates
-    const clipboardDocRef = doc(db, 'clipboard', 'shared_text');
+    const clipboardDocRef = doc(db, 'clipboard', bucketCode);
     const unsubscribe = onSnapshot(clipboardDocRef, (doc) => {
       if (doc.exists()) {
         const data = doc.data();
