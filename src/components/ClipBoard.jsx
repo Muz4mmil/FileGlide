@@ -44,8 +44,8 @@ function ClipBoard({bucketCode}) {
       <p>Clip-Board</p>
       <textarea name="text-field" className='text-field' rows="10" value={sharedText} onChange={handleChange}></textarea>
       <div className="buttons">
-        <div className="refresh" onClick={saveSharedText}><i class="fa-solid fa-arrows-rotate"></i>Refresh</div>
-        <div className="clear"><i class="fa-solid fa-eraser"></i>Clear</div>
+        <div className="refresh" onClick={saveSharedText}><i class="fa-solid fa-arrows-rotate"></i>Update</div>
+        <div className="clear" onClick={()=> setSharedText('')}><i class="fa-solid fa-eraser"></i>Clear</div>
       </div>
     </div>
   )
