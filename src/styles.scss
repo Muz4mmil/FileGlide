@@ -132,11 +132,10 @@ $phone : 768px;
         }
 
         .exit{
-            height: 56px;
             padding: 0px 10px;
             
             background: linear-gradient(#ff9174, #ff7674);
-            font-size: 30px;
+            font-size: 20px;
             aspect-ratio: 1;
             border: none;
             outline: none;
@@ -217,6 +216,7 @@ $phone : 768px;
             font-weight: 500;
             border-radius: 22px;
             cursor: pointer;
+            -webkit-tap-highlight-color: none;
         }
 
         .slider{

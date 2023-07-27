@@ -81,16 +81,6 @@ function Files({bucketCode}) {
         {
           files.map((file) => <FileItem name={file.name} size={file.size} url={file.url}/>)
         }
-        
-        {/* <FileItem />
-        <FileItem />
-        <FileItem />
-        <FileItem />
-        <FileItem />
-        <FileItem />
-        <FileItem />
-        <FileItem /> */}
-
       </div>
 
       <FileUploader onFileSelect={handleFileSelect} />
