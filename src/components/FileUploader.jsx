@@ -17,13 +17,13 @@ const FileUploader = ({ onFileSelect }) => {
   const handleDrop = (e) => {
     e.preventDefault();
     setHighlight(false);
-    const file = e.dataTransfer.files[0];
-    onFileSelect(file);
+    const files = e.dataTransfer.files;
+    onFileSelect(files);
   };
 
   const handleInputChange = (e) => {
-    const file = e.target.files[0];
-    onFileSelect(file);
+    const files = e.target.files;
+    onFileSelect(files);
   };
 
   const handleBrowseClick = () => {
@@ -38,7 +38,7 @@ const FileUploader = ({ onFileSelect }) => {
       onDrop={handleDrop}
     >
       <input
-        type="file"
+        type="file" multiple
         onChange={handleInputChange}
         className="file-input"
         ref={fileInputRef}

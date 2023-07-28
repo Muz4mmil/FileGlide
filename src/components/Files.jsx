@@ -8,7 +8,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.c
 function Files({bucketCode}) {
 
   const [files, setFiles] = useState([])
-  const [newFile, setNewFile] = useState(null);
+  const [newFiles, setNewFiles] = useState([]);
 
   useEffect(() => {
     console.log(bucketCode);
@@ -16,49 +16,56 @@ function Files({bucketCode}) {
 
   const filesRef = collection(db, "files");
 
-  const handleFileUpload = async (file) => {
-    console.log('fileSelected ' + newFile.name);
+  const handleFileUpload = async () => {
 
-    const storageRef = ref(storage, bucketCode + '/' + newFile.name);
+    for (let i = 0; i < newFiles.length; i++) {
 
-    const uploadTask = await uploadBytesResumable(storageRef, newFile);
+      const newFile = newFiles[i];
 
-    uploadTask.task.on('state_changed',
-      (snapshot) => {
-        
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        getDownloadURL(uploadTask.task.snapshot.ref).then((downloadURL) => {
-          console.log('newFile available at', downloadURL);
-
-          addDoc(filesRef, {
-            name: newFile.name,
-            size: newFile.size,
-            type: newFile.type,
-            uploadedAt: serverTimestamp(),
-            bucket: bucketCode,
-            url: downloadURL
+      console.log('fileSelected ' + newFile.name);
+  
+      const storageRef = ref(storage, bucketCode + '/' + newFile.name);
+  
+      const uploadTask = await uploadBytesResumable(storageRef, newFile);
+  
+      uploadTask.task.on('state_changed',
+        (snapshot) => {
+          
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.task.snapshot.ref).then((downloadURL) => {
+            console.log('newFile available at', downloadURL);
+  
+            addDoc(filesRef, {
+              name: newFile.name,
+              size: newFile.size,
+              type: newFile.type,
+              uploadedAt: serverTimestamp(),
+              bucket: bucketCode,
+              url: downloadURL
+            });
           });
-        });
-      }
-    );
+        }
+      );
+      
+    }
   };
 
-  const handleFileSelect = (file) => {
-    if (file) {
-      console.log('fileSelected' + file.name);
-      setNewFile(file);
+  const handleFileSelect = (files) => {
+    if (files) {
+      console.log('fileSelected' + files.name);
+      setNewFiles(files);
     }
   }
 
   useEffect(() => {
-    if (newFile) {
-      handleFileUpload(newFile);
+    if (newFiles) {
+      handleFileUpload(newFiles);
     }
-  }, [newFile]);
+  }, [newFiles]);
 
 
   useEffect(()=>{
