@@ -1,6 +1,6 @@
 import React from 'react'
 
-function FileItem({name, size, url}) {
+function FileItem({index, name, size, url}) {
 
   const handleDownload = ()=>{
     if(url){
@@ -15,7 +15,7 @@ function FileItem({name, size, url}) {
   }
 
   return (
-    <div className="file-item animate__animated animate__fadeInUp animate__faster">
+    <div key={index} className="file-item animate__animated animate__fadeInUp animate__faster">
           <i class="fa-solid fa-file"></i>
           <div className="file-details">
             <div className="name">{name}</div>

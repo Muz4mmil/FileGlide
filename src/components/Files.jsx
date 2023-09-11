@@ -21,10 +21,10 @@ function Files({bucketCode}) {
     for (let i = 0; i < newFiles.length; i++) {
 
       const newFile = newFiles[i];
-
       console.log('fileSelected ' + newFile.name);
   
-      const storageRef = ref(storage, bucketCode + '/' + newFile.name);
+      const storageRef = ref(storage, newFile.name);
+      // const storageRef = ref(storage, bucketCode + '/' + newFile.name);
   
       const uploadTask = await uploadBytesResumable(storageRef, newFile);
   
@@ -38,12 +38,19 @@ function Files({bucketCode}) {
         () => {
           getDownloadURL(uploadTask.task.snapshot.ref).then((downloadURL) => {
             console.log('newFile available at', downloadURL);
-  
+            
+            let date = new Date();
+
             addDoc(filesRef, {
               name: newFile.name,
               size: newFile.size,
               type: newFile.type,
               uploadedAt: serverTimestamp(),
+              uploadDate: {
+                date: date.getDate(),
+                month: date.getMonth(),
+                year: date.getFullYear()
+              },
               bucket: bucketCode,
               url: downloadURL
             });
@@ -70,7 +77,7 @@ function Files({bucketCode}) {
 
   useEffect(()=>{
     const queryFiles = query(filesRef, where('bucket', '==', bucketCode), orderBy("uploadedAt", "desc"));
-    const unsuscribe = onSnapshot(queryFiles, (snapshot)=>{
+    const unsubscribe = onSnapshot(queryFiles, (snapshot)=>{
         let files = [];
         snapshot.forEach((doc) =>{
             files.push({...doc.data(), id: doc.id})
@@ -78,7 +85,7 @@ function Files({bucketCode}) {
         setFiles(files)
     })
     // I don't know what's happening in this block
-    return ()=> unsuscribe();
+    return ()=> unsubscribe();
   }, [])
 
   return (
@@ -86,7 +93,7 @@ function Files({bucketCode}) {
       <p>Files</p>
       <div className="files-list">
         {
-          files.map((file) => <FileItem name={file.name} size={file.size} url={file.url}/>)
+          files.map((file, index) => <FileItem key={index} name={file.name} size={file.size} url={file.url}/>)
         }
       </div>
 

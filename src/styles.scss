@@ -41,6 +41,12 @@ $phone : 768px;
         text-align: center;
     }
 
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
     input{
         padding: 6px 22px;
         width: 260px;
