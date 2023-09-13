@@ -10,10 +10,6 @@ function Files({bucketCode}) {
   const [files, setFiles] = useState([])
   const [newFiles, setNewFiles] = useState([]);
 
-  useEffect(() => {
-    console.log(bucketCode);
-  }, [bucketCode]);
-
   const filesRef = collection(db, "files");
 
   const handleFileUpload = async () => {
@@ -30,12 +26,12 @@ function Files({bucketCode}) {
   
       uploadTask.task.on('state_changed',
         (snapshot) => {
-          
+
         },
         (error) => {
           console.log(error);
         },
-        () => {
+        (snapshot) => {
           getDownloadURL(uploadTask.task.snapshot.ref).then((downloadURL) => {
             console.log('newFile available at', downloadURL);
             

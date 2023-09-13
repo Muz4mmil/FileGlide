@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from 'react'
 import {db, storage} from '../firbase-config'
 import { ref, deleteObject  } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
-import { collection, onSnapshot, query, deleteDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+import { doc, collection, onSnapshot, query, deleteDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
 
-function Start({bucketCode, setBucketCode}) {
+function Start({setBucketCode}) {
 
   let currentDate = new Date();
 
@@ -15,18 +15,33 @@ function Start({bucketCode, setBucketCode}) {
   useEffect(()=>{
     const queryFiles = query(filesRef);
     const unsubscribe = onSnapshot(queryFiles, (snapshot)=>{
-        snapshot.forEach((doc) =>{
-          let fileData = doc.data()
+        snapshot.forEach((document) =>{
+          let fileData = document.data()
 
           let fileUploadDate = fileData.uploadDate;
+          
+          if (currentDate.getDate() > fileUploadDate.date || 
+              currentDate.getMonth() > fileUploadDate.month || 
+              currentDate.getFullYear() > fileUploadDate.year){
+                let fileRef = ref(storage, fileData.name);
 
-          if (currentDate.getDate() > fileUploadDate.date && currentDate.getMonth() > fileUploadDate.month && currentDate.getFullYear() > fileUploadDate.year){
-            let fileRef = ref(storage, fileData.name);
-            deleteObject(fileRef);
-            console.log("Deleted File "+ fileData.name);
-            deleteDoc(doc);
-          }
-        })
+                deleteObject(fileRef)
+                  .then(() => {
+                    console.log("Deleted File");
+                    
+                    deleteDoc(doc(db, "files", document.id))
+                    .then(() => {
+                      console.log("Deleted Doc " + document.id);
+                    })
+                    .catch((error) => {
+                      console.error("Error deleting document: ", error);
+                    });;
+                  })
+                  .catch((error) => {
+                    console.error("Error deleting file: ", error);
+                  });
+                }
+          })
     });
     return ()=> unsubscribe();
   }, [])
