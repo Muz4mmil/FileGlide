@@ -21,12 +21,12 @@ $phone : 768px;
 }
 
 .start-bg{
-    background: url('bg.png');
+    background: url('../public/bg.png');
     background-position: center;
     background-size: cover;
     
     @media (max-width: $phone){
-        background: url('bg-phone.jpg');
+        background: url('../public/bg-phone.jpg');
         background-position: center;
         background-size: cover;
     }
