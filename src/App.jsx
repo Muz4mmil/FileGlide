@@ -9,10 +9,10 @@ function App() {
   const [bucketCode, setBucketCode] = useState(null);
 
   return (
-    <>
+    <div className={ bucketCode ? "app" : "app start-bg"}>
       {bucketCode ? (<Bucket bucketCode={bucketCode} setBucketCode={setBucketCode}/>)
        : (<Start bucketCode={bucketCode} setBucketCode={setBucketCode}/>)}
-    </>
+    </div>
   )
 }
 

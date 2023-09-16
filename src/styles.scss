@@ -13,20 +13,23 @@
 
 $phone : 768px;
 
-// body{
-//     background: url('./bg.png');
-//     background-size: cover;
-// }
-
-#root{
+.app{
     height: 100vh;
     width: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
     display: grid;
     place-items: center;
+}
+
+.start-bg{
+    background: url('bg.png');
+    background-position: center;
+    background-size: cover;
+    
+    @media (max-width: $phone){
+        background: url('bg-phone.jpg');
+        background-position: center;
+        background-size: cover;
+    }
 }
 
 .start{
@@ -44,6 +47,8 @@ $phone : 768px;
         justify-content: space-around;
 
         h1{
+            font-family: 'Righteous', sans-serif;
+            font-weight: 300;
             font-size: 58px;
             display: grid;
             margin-bottom: 10px;
