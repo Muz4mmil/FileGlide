@@ -201,7 +201,7 @@ $phone : 768px;
 
     .header-card{
         // border: 1px solid grey;
-       
+        background: #FFF;
         border-radius: 10px;
         position: relative;
         height: 60px;
@@ -579,4 +579,13 @@ $phone : 768px;
             }
         }
     }
+}
+
+.credit{
+    position: absolute;
+    bottom: 0;
+    text-decoration: none;
+    color: grey;
+    font-size: 12px;
+    font-weight: 600;
 }
