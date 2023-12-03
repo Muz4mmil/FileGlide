@@ -22,12 +22,12 @@ $phone : 768px;
 }
 
 .app{
-    background: url('../public/bg4.PNG');
+    background: url('../public/bg3.PNG');
     background-position: center;
     background-size: cover;
     
     @media (max-width: $phone){
-        background: url('../public/bg4.PNG');
+        background: url('../public/bg3.PNG');
         background-position: center;
         background-size: cover;
     }
@@ -319,13 +319,12 @@ $phone : 768px;
     .switch{
         position: relative;
         height: 44px;
-        width: 100%;
+        width: 300px;
         margin: auto;
         grid-area: switch;
         display: none;
         align-items: center;
         border-radius: 22px;
-        border: 1px solid rgba(0, 0, 0, 0.1);
         box-shadow: 0 2px 6px lightgrey;
 
         @media (max-width: $phone){
@@ -353,19 +352,19 @@ $phone : 768px;
         }
         
         .file-switch.active{ 
-            color: #fff;
+            color: #0e657a;
             font-weight: 600;
             &~ .slider{
-                background: rgba(0, 0, 0, 0.8);
+                background: #b3f0ff;
                 transform: translateX(0%);
             }
         }
         .cb-switch.active {
-            color: #fff;
+            color: #856010;
             font-weight: 600;
 
             &~ .slider{
-            background: rgba(0, 0, 0, 0.8);
+            background: #ffedc7;
             transform: translateX(102.5%);
         }}
     }
@@ -376,12 +375,14 @@ $phone : 768px;
         padding: 16px;
         height: 100%;
         min-width: 50%;
-        // color: #122941;
+        color: #122941;
         // background: rgb(220, 245, 253);
         // background: rgb(247, 253, 255);
         // background: #e6faff;
-        background: rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.55);
         box-shadow: 0 2px 5px lightgrey;
+        box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.1);
 
         .files-list{
             height: calc(100% - 166px);
@@ -434,8 +435,8 @@ $phone : 768px;
                 .download, .delete{
                     width: 54px;
                     // background: linear-gradient(#4fccd5, #10aabe) ;
-                    background: rgba(0, 0, 0, 0.1);
-                    color: black;
+                    background: #10aabe3b ;
+                    color: #148392;
                     height: 100%;
                     display: flex;
                     align-items: center;
@@ -445,7 +446,7 @@ $phone : 768px;
                     
                     &:hover{
                         // background: linear-gradient(#1094a5, #1094a5) ;
-                        background: rgba(0, 0, 0, 0.9);
+                        background: #10aabe ;
                         color: white;
                         // text-shadow: 0px 0px 25px black;
                     }
@@ -453,7 +454,7 @@ $phone : 768px;
 
                 .file-btns{
                     position: absolute;
-                    // background: rgb(220, 245, 253);
+                    background: rgb(220, 245, 253);
                     right: 0;
                     display: flex;
                     height: 100%;
@@ -472,7 +473,7 @@ $phone : 768px;
         grid-area: clipboard;
         width: 100%;
         // background: #fff5e0;
-        background: rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.55);
         box-shadow: 0 2px 5px lightgrey;
         // display: none;
     }
@@ -482,7 +483,7 @@ $phone : 768px;
         display: flex;
         flex-direction: column;
         width: 100%;
-        padding: 10px 10px;
+        padding: 10px;
     }
 }
 
@@ -580,8 +581,8 @@ $phone : 768px;
             padding: 4px 8px;
 
             &:hover{
-                background: rgba(0, 0, 0, 0.1);
-                // background: rgb(255, 205, 143);
+                background: #0000002c;
+                background: rgb(255, 205, 143);
                 cursor: pointer;
             }
         }

@@ -18,6 +18,19 @@ function ClipBoard({bucketCode}) {
     console.log('text-sent');
   };
 
+  const copySharedText = ()=>{
+    let textarea = document.querySelector(".text-field");
+    textarea.select();
+    document.execCommand("copy");
+    textarea.blur();
+
+    document.querySelector('.copy').innerHTML = '<i class="fa-solid fa-check"></i>Copied'
+
+    setTimeout(()=>{
+      document.querySelector('.copy').innerHTML = '<i class="fa-regular fa-copy"></i>Copy'
+    }, 1000)
+  }
+
   useEffect(() => {
     // Set up Firestore listener to get shared text updates
     const clipboardDocRef = doc(db, 'clipboard', bucketCode);
@@ -44,6 +57,7 @@ function ClipBoard({bucketCode}) {
       <p>Clip-Board</p>
       <textarea name="text-field" className='text-field' rows="14" value={sharedText} onChange={handleChange}></textarea>
       <div className="buttons">
+        <div className="copy" onClick={copySharedText}><i class="fa-regular fa-copy"></i>Copy</div>
         <div className="refresh" onClick={saveSharedText}><i class="fa-solid fa-arrows-rotate"></i>Update</div>
         <div className="clear" onClick={()=> setSharedText('')}><i class="fa-solid fa-eraser"></i>Clear</div>
       </div>

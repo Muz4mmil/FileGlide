@@ -22,7 +22,7 @@ function FileItem({index, name, size, url}) {
             <div className="size">{Math.round((size/1048576) * 100) / 100} MB</div>
           </div>
           <div className="file-btns">
-            <div className="download" onClick={handleDownload}><i class="fa-solid fa-download"></i></div>
+            <div className="download" onClick={handleDownload}><i class="fa-solid fa-arrow-down"></i></div>
           </div>
     </div>
   )
