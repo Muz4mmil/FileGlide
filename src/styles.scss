@@ -488,6 +488,14 @@ $phone : 768px;
                     gap: 4px;
                 }
             }
+
+            .no-files{
+                position: absolute;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -40%);
+                opacity: .5;
+            }
         }
 
         @media (max-width: $phone){

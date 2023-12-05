@@ -88,8 +88,8 @@ function Files({bucketCode}) {
     <div className="files animate__animated animate__slideInLeft animate__faster">
       <p>Files</p>
       <div className="files-list">
-        {
-          files.map((file, index) => <FileItem key={index} name={file.name} size={file.size} url={file.url}/>)
+        { files.length == 0 ? (<div className='no-files'>No files in Bucket</div>) :
+          (files.map((file, index) => <FileItem key={index} name={file.name} size={file.size} url={file.url}/>))
         }
       </div>
 
