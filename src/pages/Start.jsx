@@ -72,6 +72,7 @@ function Start({setBucketCode}) {
             }}>Enter</button>
           </form>
       </div>
+      <a href="http://muz4mmil.github.io" target="_blank" className='credit'>©Muzammil</a>
     </div>
   )
 }

@@ -13,7 +13,7 @@ function App() {
       {bucketCode ? (<Bucket bucketCode={bucketCode} setBucketCode={setBucketCode}/>)
        : (<Start bucketCode={bucketCode} setBucketCode={setBucketCode}/>)}
 
-      <a href="http://muz4mmil.github.io" target="_blank" className='credit'>©Muzammil</a>
+
     </div>
   )
 }

@@ -37,6 +37,7 @@ function Container({bucketCode}) {
         </div>
         </>
       ) : (<div className='main'><Files bucketCode={bucketCode}/> <ClipBoard bucketCode={bucketCode}/></div>)}
+            
     </div>
   )
 }
