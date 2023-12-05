@@ -28,8 +28,9 @@ $phone : 768px;
     
     @media (max-width: $phone){
         background: url('../public/bg4.PNG');
-        background-position: center;
-        background-size: cover;
+        background-position: bottom;
+        background-size: 200% 110%;
+        background-repeat: no-repeat;
     }
 }
 
@@ -101,8 +102,10 @@ $phone : 768px;
 
             h3{
                 font-size: 18px;
+                margin-top: 10px;
             }
             p{
+                margin-top: 20px;
                 font-size: 14px;
             }
         }
