@@ -22,6 +22,7 @@ $phone : 768px;
 }
 
 .app{
+    // background: linear-gradient(135deg, #d2ecff, #FEF9C3) ;
     background: url('../public/bg4.PNG');
     background-position: center;
     background-size: cover;
@@ -354,7 +355,7 @@ $phone : 768px;
         align-items: center;
         border-radius: 22px;
         border: 1px solid rgba(0, 0, 0, 0.1);
-        box-shadow: 0 2px 6px lightgrey;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
         @media (max-width: $phone){
             display: flex;
@@ -375,25 +376,27 @@ $phone : 768px;
             width: 48%;
             position: absolute;
             border-radius: 22px;
-            z-index: -1;
+            z-index: 0;
             margin-left: 4px;
             transition: .3s;
         }
         
         .file-switch.active{ 
-            color: #fff;
+            color: #0e657a;
             font-weight: 600;
+            z-index: 1;
             &~ .slider{
-                background: rgba(0, 0, 0, 0.8);
+                background: #b3f0ff;
                 transform: translateX(0%);
             }
         }
         .cb-switch.active {
-            color: #fff;
+            color: #856010;
             font-weight: 600;
 
+            z-index: 1;
             &~ .slider{
-            background: rgba(0, 0, 0, 0.8);
+            background: #ffedc7;
             transform: translateX(102.5%);
         }}
     }
@@ -408,8 +411,8 @@ $phone : 768px;
         // background: rgb(220, 245, 253);
         // background: rgb(247, 253, 255);
         // background: #e6faff;
-        background: rgba(255, 255, 255, 0.6);
-        box-shadow: 0 2px 5px lightgrey;
+        background: rgba(255, 255, 255, 0.4);
+        	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         .files-list{
             height: calc(100% - 166px);
@@ -508,8 +511,8 @@ $phone : 768px;
         grid-area: clipboard;
         width: 100%;
         // background: #fff5e0;
-        background: rgba(255, 255, 255, 0.6);
-        box-shadow: 0 2px 5px lightgrey;
+        background: rgba(255, 255, 255, 0.4);
+        	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         // display: none;
     }
 
