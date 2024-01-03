@@ -14,6 +14,8 @@ function Container({bucketCode}) {
 
     handleResize();
 
+    
+
     window.addEventListener('resize', handleResize);
 
     return ()=>{
@@ -24,6 +26,13 @@ function Container({bucketCode}) {
 
   const handleSwitch = (component) =>{
     setActive(component)
+    if(isMobile){
+      document.querySelector('.app').style.background = active === 'files' ? '#d1f4ff70' : '#FFF2DE54'
+    }
+  }
+
+  if(isMobile){
+    document.querySelector('.app').style.background = active === 'files' ? '#d1f4ff70' : '#FFF2DE54'
   }
 
   return (

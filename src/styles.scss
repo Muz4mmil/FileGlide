@@ -22,16 +22,18 @@ $phone : 768px;
 }
 
 .app{
-    // background: linear-gradient(135deg, #d2ecff, #FEF9C3) ;
-    background: url('../public/bg4.PNG');
-    background-position: center;
-    background-size: cover;
+    background: linear-gradient(to right, #d1f4ff,#FFF2DE);
+    transition: .3s;
+    // background: url('../public/bg4.PNG');
+    // background-position: center;
+    // background-size: cover;
     
     @media (max-width: $phone){
-        background: url('../public/bg4.PNG');
-        background-position: bottom;
-        background-size: 200% 110%;
-        background-repeat: no-repeat;
+        background: linear-gradient(135deg, #d1f4ff,#d1f4ffa9,#fff2dea9,#FFF2DE);
+        // background: url('../public/bg4.PNG');
+        // background-position: bottom;
+        // background-size: 200% 110%;
+        // background-repeat: no-repeat;
     }
 }
 
@@ -225,14 +227,14 @@ $phone : 768px;
             opacity: 0.7;
             position: absolute;
             top: 0px;
-            left: 5px;
+            left: 0px;
             // background-color: rgb(233, 233, 233);
             padding: 0px 5px;
             
             @media (max-width: $phone){
                 // height: 50px;
                 padding: 0px 5px;
-                left: 3px;
+                left: 0px;
                 font-size: 10px;
             }
         }
@@ -242,9 +244,11 @@ $phone : 768px;
             font-weight: 600;
             letter-spacing: 6px;
             padding: 15px 10px 0px;
-            width: 100px;
+            max-width: max-content;
+            min-width: 100px;
             
             @media (max-width: $phone){
+                min-width: 80px;
                 padding: 10px 5px 0px;
                 font-size: 24px;
             }
@@ -351,6 +355,7 @@ $phone : 768px;
         width: 100%;
         margin: auto;
         grid-area: switch;
+        background: rgba(255, 255, 255, 0.5);
         display: none;
         align-items: center;
         border-radius: 22px;
@@ -389,6 +394,7 @@ $phone : 768px;
                 background: #b3f0ff;
                 transform: translateX(0%);
             }
+
         }
         .cb-switch.active {
             color: #856010;
@@ -398,6 +404,7 @@ $phone : 768px;
             &~ .slider{
             background: #ffedc7;
             transform: translateX(102.5%);
+
         }}
     }
 
@@ -411,7 +418,8 @@ $phone : 768px;
         // background: rgb(220, 245, 253);
         // background: rgb(247, 253, 255);
         // background: #e6faff;
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(0,0,0, 0.1);
         	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
         .files-list{
@@ -432,7 +440,7 @@ $phone : 768px;
                 width: 100%;
                 border-radius: 8px;
                 background: #FFF;
-                box-shadow: 0 2px 4px rgb(179, 201, 209);
+                box-shadow: 0 2px 6px -2px rgb(179, 201, 209);
                 // border: 1px solid lightgrey;
                 display: flex;
                 gap: 4px;
@@ -465,7 +473,7 @@ $phone : 768px;
                 .download, .delete{
                     width: 54px;
                     // background: linear-gradient(#4fccd5, #10aabe) ;
-                    background: rgba(0, 0, 0, 0.1);
+                    background: rgba(132, 207, 229, 0.4);
                     color: black;
                     height: 100%;
                     display: flex;
@@ -475,8 +483,8 @@ $phone : 768px;
                     cursor: pointer;
                     
                     &:hover{
-                        // background: linear-gradient(#1094a5, #1094a5) ;
-                        background: rgba(0, 0, 0, 0.9);
+                        background: #1897c9d8;
+                        // background: rgba(0, 0, 0, 0.9);
                         color: white;
                         // text-shadow: 0px 0px 25px black;
                     }
@@ -511,7 +519,8 @@ $phone : 768px;
         grid-area: clipboard;
         width: 100%;
         // background: #fff5e0;
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(0,0,0, 0.1);
         	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         // display: none;
     }
@@ -580,7 +589,7 @@ $phone : 768px;
       transition: background-color 0.3s ease-in-out;
 
       &:hover {
-        background-color: #00000010;
+        background-color: rgba(132, 207, 229, 0.2);
       }
     }
   }
@@ -619,8 +628,8 @@ $phone : 768px;
             padding: 4px 8px;
 
             &:hover{
-                background: rgba(0, 0, 0, 0.1);
-                // background: rgb(255, 205, 143);
+                // background: rgba(0, 0, 0, 0.1);
+                background: rgba(255, 205, 143, 0.6);
                 cursor: pointer;
             }
         }
