@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import FileItem from './FileItem';
 import FileUploader from './FileUploader';
-import {db, storage} from '../firbase-config'
+import { db, storage } from '../firbase-config'
 import { addDoc, collection, serverTimestamp, onSnapshot, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 
-function Files({bucketCode}) {
+function Files({ bucketCode }) {
 
   const [files, setFiles] = useState([])
   const [newFiles, setNewFiles] = useState([]);
+  const [uploadProgress, setUploadProgress] = useState(false);
 
   const filesRef = collection(db, "files");
 
   const handleFileUpload = async () => {
 
     for (let i = 0; i < newFiles.length; i++) {
-
+      setUploadProgress(true);
       const newFile = newFiles[i];
       console.log('fileSelected ' + newFile.name);
-  
+
       const storageRef = ref(storage, newFile.name);
       // const storageRef = ref(storage, bucketCode + '/' + newFile.name);
-  
+
       const uploadTask = await uploadBytesResumable(storageRef, newFile);
-  
+
       uploadTask.task.on('state_changed',
         (snapshot) => {
 
@@ -34,7 +35,7 @@ function Files({bucketCode}) {
         (snapshot) => {
           getDownloadURL(uploadTask.task.snapshot.ref).then((downloadURL) => {
             console.log('newFile available at', downloadURL);
-            
+
             let date = new Date();
 
             addDoc(filesRef, {
@@ -53,7 +54,7 @@ function Files({bucketCode}) {
           });
         }
       );
-      
+
     }
   };
 
@@ -66,35 +67,49 @@ function Files({bucketCode}) {
 
   useEffect(() => {
     if (newFiles) {
+      
       handleFileUpload(newFiles);
     }
   }, [newFiles]);
 
 
-  useEffect(()=>{
+  useEffect(() => {
     const queryFiles = query(filesRef, where('bucket', '==', bucketCode), orderBy("uploadedAt", "desc"));
-    const unsubscribe = onSnapshot(queryFiles, (snapshot)=>{
-        let files = [];
-        snapshot.forEach((doc) =>{
-            files.push({...doc.data(), id: doc.id})
-        })
-        setFiles(files)
+    const unsubscribe = onSnapshot(queryFiles, (snapshot) => {
+      let files = [];
+      snapshot.forEach((doc) => {
+        files.push({ ...doc.data(), id: doc.id })
+      })
+      setFiles(files)
+      console.log(uploadProgress);
+      setUploadProgress(false)
     })
     // I don't know what's happening in this block
-    return ()=> unsubscribe();
+    return () => unsubscribe();
   }, [])
 
   return (
     <div className="files animate__animated animate__slideInLeft animate__faster">
       <p>Files</p>
       <div className="files-list">
-        { files.length == 0 ? (<div className='no-files'>No files in Bucket</div>) :
-          (files.map((file, index) => <FileItem key={index} name={file.name} size={file.size} url={file.url}/>))
+        {files.length == 0 ? (<div className='no-files'>No files in Bucket</div>) :
+          (files.map((file, index) => <FileItem key={index} name={file.name} size={file.size} url={file.url} />))
+        }
+
+        {
+          uploadProgress ?
+            (<div className='loader'>
+              <span className='loader-icon'></span>
+              Uploading...
+            </div>)
+            : ('')
         }
       </div>
 
+
+
       <FileUploader onFileSelect={handleFileSelect} />
-    
+
     </div>
   )
 }

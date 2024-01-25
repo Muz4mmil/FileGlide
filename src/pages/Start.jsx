@@ -1,49 +1,62 @@
 import React, { useRef, useEffect } from 'react'
-import {db, storage} from '../firbase-config'
-import { ref, deleteObject  } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
+import { db, storage } from '../firbase-config'
+import { ref, deleteObject } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js";
 import { doc, collection, onSnapshot, query, deleteDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
 
-function Start({setBucketCode}) {
-
-  let currentDate = new Date();
+function Start({ setBucketCode }) {
 
   const bucketInputRef = useRef(null)
 
+  let currentDate = new Date();
   const filesRef = collection(db, "files");
+  const clipboardRef = collection(db, "clipboard");
 
-  useEffect(()=>{
+  useEffect(() => {
     const queryFiles = query(filesRef);
-    const unsubscribe = onSnapshot(queryFiles, (snapshot)=>{
-        snapshot.forEach((document) =>{
-          let fileData = document.data()
+    const unsubscribeFiles = onSnapshot(queryFiles, (snapshot) => {
+      snapshot.forEach((document) => {
+        let fileData = document.data()
+        let fileUploadDate = fileData.uploadDate;
 
-          let fileUploadDate = fileData.uploadDate;
-          
-          if (currentDate.getDate() > fileUploadDate.date || 
-              currentDate.getMonth() > fileUploadDate.month || 
-              currentDate.getFullYear() > fileUploadDate.year){
-                let fileRef = ref(storage, fileData.name);
+        if (currentDate.getDate() > fileUploadDate.date ||
+          currentDate.getMonth() > fileUploadDate.month ||
+          currentDate.getFullYear() > fileUploadDate.year) {
+          let fileRef = ref(storage, fileData.name);
 
-                deleteObject(fileRef)
-                  .then(() => {
-                    console.log("Deleted File");
-                    
-                    deleteDoc(doc(db, "files", document.id))
-                    .then(() => {
-                      console.log("Deleted Doc " + document.id);
-                    })
-                    .catch((error) => {
-                      console.error("Error deleting document: ", error);
-                    });;
-                  })
-                  .catch((error) => {
-                    console.error("Error deleting file: ", error);
-                  });
-                }
-          })
+          deleteObject(fileRef)
+            .then(async () => {
+              console.log("Deleted File");
+              await deleteDoc(doc(db, "files", document.id))
+            })
+            .catch((error) => {
+              console.error("Error deleting file: ", error);
+            });
+        }
+      })
     });
-    return ()=> unsubscribe();
+
+    const queryClipbords = query(clipboardRef);
+    const unsubscribeClipboard = onSnapshot(queryClipbords, (snapshot) => {
+      snapshot.forEach((document) => {
+        let fileData = document.data()
+        let fileUploadDate = fileData.uploadDate;
+
+        if (currentDate.getDate() > fileUploadDate.date ||
+          currentDate.getMonth() > fileUploadDate.month ||
+          currentDate.getFullYear() > fileUploadDate.year) {
+
+          let docRef = fileData.bucket
+          deleteDoc(doc(db, "clipboard", docRef))
+          console.log('deleted clipboard');
+
+        }
+      })
+    });
+    return () => {
+      unsubscribeFiles();
+      unsubscribeClipboard()
+    };
   }, [])
 
   return (
@@ -59,18 +72,18 @@ function Start({setBucketCode}) {
           Step 3 - Start transfering files and clipboards among these devices. <br />
           Step 4 - Thank me ;)
         </p>
-        <p className='info'><i class="fa-solid fa-circle-info" style={{marginRight: '10px'}}></i> Remember, At midnight 12', all Buckets will be emptied, your files will get deleted too and won't be accessible after that.</p>
+        <p className='info'><i class="fa-solid fa-circle-info" style={{ marginRight: '10px' }}></i> Remember, At midnight 12', all Buckets will be emptied, your files will get deleted too and won't be accessible after that.</p>
       </div>
       <div className="bucket-box">
-          <p>Enter Bucket Code</p>
-          <form>
-            <input ref={bucketInputRef} maxLength={4} placeholder='XXXX'/>
-            <button type='submit' onClick={(e)=>{
-                e.preventDefault();
-                setBucketCode(bucketInputRef.current.value);
-                console.log("Entered "+ bucketInputRef.current.value);
-            }}>Enter</button>
-          </form>
+        <p>Enter Bucket Code</p>
+        <form>
+          <input ref={bucketInputRef} maxLength={4} placeholder='XXXX' />
+          <button type='submit' onClick={(e) => {
+            e.preventDefault();
+            setBucketCode(bucketInputRef.current.value);
+            console.log("Entered " + bucketInputRef.current.value);
+          }}>Enter</button>
+        </form>
       </div>
       <a href="http://muz4mmil.github.io" target="_blank" className='credit'>©Muzammil</a>
     </div>

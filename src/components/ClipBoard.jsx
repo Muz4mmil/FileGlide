@@ -1,8 +1,8 @@
-import React, { useState, useEffect }  from 'react'
+import React, { useState, useEffect } from 'react'
 import { collection, doc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
-import {db, storage} from '../firbase-config'
+import { db, storage } from '../firbase-config'
 
-function ClipBoard({bucketCode}) {
+function ClipBoard({ bucketCode }) {
 
   const [sharedText, setSharedText] = useState('');
 
@@ -13,12 +13,21 @@ function ClipBoard({bucketCode}) {
 
   // Function to save the shared text to Firestore
   const saveSharedText = async () => {
+    let date = new Date();
     const clipboardDocRef = doc(db, 'clipboard', bucketCode);
-    await setDoc(clipboardDocRef, { text: sharedText});
+    await setDoc(clipboardDocRef, {
+      text: sharedText,
+      bucket: bucketCode,
+      uploadDate: {
+        date: date.getDate(),
+        month: date.getMonth(),
+        year: date.getFullYear()
+      },
+    });
     console.log('text-sent');
   };
 
-  const copySharedText = ()=>{
+  const copySharedText = () => {
     let textarea = document.querySelector(".text-field");
     textarea.select();
     document.execCommand("copy");
@@ -26,7 +35,7 @@ function ClipBoard({bucketCode}) {
 
     document.querySelector('.copy').innerHTML = '<i class="fa-solid fa-check"></i>Copied'
 
-    setTimeout(()=>{
+    setTimeout(() => {
       document.querySelector('.copy').innerHTML = '<i class="fa-regular fa-copy"></i>Copy'
     }, 1000)
   }
@@ -51,7 +60,7 @@ function ClipBoard({bucketCode}) {
 
 
 
-  
+
   return (
     <div className='clipboard animate__animated animate__slideInRight animate__faster'>
       <p>Clip-Board</p>
@@ -59,7 +68,7 @@ function ClipBoard({bucketCode}) {
       <div className="buttons">
         <div className="copy" onClick={copySharedText}><i class="fa-regular fa-copy"></i>Copy</div>
         <div className="refresh" onClick={saveSharedText}><i class="fa-solid fa-arrows-rotate"></i>Update</div>
-        <div className="clear" onClick={()=> setSharedText('')}><i class="fa-solid fa-eraser"></i>Clear</div>
+        <div className="clear" onClick={() => setSharedText('')}><i class="fa-solid fa-eraser"></i>Clear</div>
       </div>
     </div>
   )
