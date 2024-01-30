@@ -120,6 +120,26 @@ $phone : 768px;
             }
         }
     }
+
+    .loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .loader-icon {
+            height: 36px;
+            width: 36px;
+            margin-right: 10px;
+            border-radius: 50%;
+            border: 4px solid rgba(135, 207, 235, 0.562);
+            border-top: 4px solid rgb(34, 85, 105);
+            animation: spin 1s ease infinite;
+        }
+    }
 }
 
 .bucket-box {
@@ -684,7 +704,8 @@ $phone : 768px;
 
 .files-list {
     position: relative;
-    .loader{
+
+    .loader {
         position: absolute;
         top: 0;
         left: 0;
@@ -702,7 +723,7 @@ $phone : 768px;
         justify-content: center;
         z-index: 10;
 
-        .loader-icon{
+        .loader-icon {
             height: 36px;
             width: 36px;
             margin-right: 10px;
@@ -716,9 +737,11 @@ $phone : 768px;
             0% {
                 transform: rotate(0deg);
             }
+
             100% {
                 transform: rotate(360deg);
             }
+
             // from {
             //     transform: rotate(0deg);
             // }
