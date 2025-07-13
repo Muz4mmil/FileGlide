@@ -33,10 +33,10 @@ function ClipBoard({ bucketCode }) {
     document.execCommand("copy");
     textarea.blur();
 
-    document.querySelector('.copy').innerHTML = '<i className="fa-solid fa-check"></i>Copied'
+    document.querySelector('.copy').innerHTML = '<i class="fa-solid fa-check"></i>Copied'
 
     setTimeout(() => {
-      document.querySelector('.copy').innerHTML = '<i className="fa-regular fa-copy"></i>Copy'
+      document.querySelector('.copy').innerHTML = '<i class="fa-regular fa-copy"></i>Copy'
     }, 1000)
   }
 
