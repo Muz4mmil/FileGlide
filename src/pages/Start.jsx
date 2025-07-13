@@ -22,21 +22,21 @@ function Start({ setBucketCode }) {
           let fileData = document.data()
           let fileUploadDate = fileData.uploadDate;
 
-          if (currentDate.getDate() > fileUploadDate.date ||
-            currentDate.getMonth() > fileUploadDate.month ||
-            currentDate.getFullYear() > fileUploadDate.year) {
-            let fileRef = ref(storage, fileData.name);
+          const uploadDateObj = new Date(fileUploadDate.year, fileUploadDate.month, fileUploadDate.date);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          uploadDateObj.setHours(0, 0, 0, 0);
 
-            await deleteObject(fileRef)
+          if (uploadDateObj < today) {
+            let fileRef = ref(storage, fileData.name);
             await deleteDoc(doc(db, "files", document.id))
+            await deleteObject(fileRef)
           }
         }
         catch (error) {
           console.error("Error deleting file: ", error);
         }
-
-      }
-      )
+      })
     });
 
     const queryClipbords = query(clipboardRef);
@@ -45,23 +45,24 @@ function Start({ setBucketCode }) {
         let fileData = document.data()
         let fileUploadDate = fileData.uploadDate;
 
-        if (currentDate.getDate() > fileUploadDate.date ||
-          currentDate.getMonth() > fileUploadDate.month ||
-          currentDate.getFullYear() > fileUploadDate.year) {
+        const uploadDateObj = new Date(fileUploadDate.year, fileUploadDate.month, fileUploadDate.date);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        uploadDateObj.setHours(0, 0, 0, 0);
 
+        if (uploadDateObj < today) {
           let docRef = fileData.bucket
           deleteDoc(doc(db, "clipboard", docRef))
           console.log('deleted clipboard');
-
         }
       })
     });
 
     setIsLoading(false)
-    setTimeout(()=>{
+    setTimeout(() => {
       document.getElementById('bucketCode').focus()
     }, 500)
-    
+
     return () => {
       unsubscribeFiles();
       unsubscribeClipboard()
@@ -88,7 +89,7 @@ function Start({ setBucketCode }) {
                 Step 3 - Start transfering files and clipboards among these devices. <br />
                 Step 4 - Thank me ;)
               </p>
-              <p className='info'><i class="fa-solid fa-circle-info" style={{ marginRight: '10px' }}></i> Remember, At midnight 12', all Buckets will be emptied, your files will get deleted too and won't be accessible after that.</p>
+              <p className='info'><i className="fa-solid fa-circle-info" style={{ marginRight: '10px' }}></i> Remember, At midnight 12', all Buckets will be emptied, your files will get deleted too and won't be accessible after that.</p>
             </div>
             <div className="bucket-box animate__animated animate__fadeIn">
               <p>Enter Bucket Code</p>

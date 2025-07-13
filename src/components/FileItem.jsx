@@ -16,13 +16,13 @@ function FileItem({index, name, size, url}) {
 
   return (
     <div key={index} className="file-item animate__animated animate__fadeInUp animate__faster">
-          <i class="fa-solid fa-file"></i>
+          <i className="fa-solid fa-file"></i>
           <div className="file-details">
             <div className="name">{name}</div>
             <div className="size">{Math.round((size/1048576) * 100) / 100} MB</div>
           </div>
           <div className="file-btns">
-            <div className="download" onClick={handleDownload}><i class="fa-solid fa-arrow-down"></i></div>
+            <div className="download" onClick={handleDownload}><i className="fa-solid fa-arrow-down"></i></div>
           </div>
     </div>
   )
